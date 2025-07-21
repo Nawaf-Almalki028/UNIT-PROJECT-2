@@ -1,0 +1,59 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+header {
+  background-color: #2d5f8b;
+}
+
+header a {
+  color: rgb(231, 231, 231);
+  text-decoration: none;
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.205);
+}
+
+.head-container {
+  background: linear-gradient(#347bb9e0),
+  url(https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?_gl=1*183gvzm*_ga*MTQ2MDc3NjczOC4xNzUyOTI1OTU4*_ga_8JE65Q40S6*czE3NTMxMDU0ODckbzMkZzEkdDE3NTMxMDYzNTQkajI4JGwwJGgw);
+  background-size: cover;
+  background-position: center;
+  padding: 5rem;
+  text-align: center;
+  color: white;
+}
+
+section .butn {
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.btn-service {
+  border: white 2px solid;
+  color:  white;
+
+}
+
+.btn-button {
+  background-color: #ffa500;
+  color: black;
+
+}
+
+.cardp1 {
+  background-color: rebeccapurple;
+}
+
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 2fr));
+}
+
+.cards-container {
+  margin: 0 10%;
+}
