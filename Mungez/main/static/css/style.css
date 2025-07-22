@@ -15,7 +15,7 @@ header a {
 
 .head-container {
   background: linear-gradient(#347bb9e0),
-  url(https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?_gl=1*183gvzm*_ga*MTQ2MDc3NjczOC4xNzUyOTI1OTU4*_ga_8JE65Q40S6*czE3NTMxMDU0ODckbzMkZzEkdDE3NTMxMDYzNTQkajI4JGwwJGgw);
+    url(https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?_gl=1*183gvzm*_ga*MTQ2MDc3NjczOC4xNzUyOTI1OTU4*_ga_8JE65Q40S6*czE3NTMxMDU0ODckbzMkZzEkdDE3NTMxMDYzNTQkajI4JGwwJGgw);
   background-size: cover;
   background-position: center;
   padding: 5rem;
@@ -34,7 +34,7 @@ section .butn {
 
 .btn-service {
   border: white 2px solid;
-  color:  white;
+  color: white;
 
 }
 
@@ -44,16 +44,34 @@ section .butn {
 
 }
 
-.cardp1 {
-  background-color: rebeccapurple;
+.service-card .card-header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.cards {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 2fr));
+footer {
+  background-color: #2d5f8b;
+  color: white;
+  display: flex;
+  justify-content: space-around;
 }
 
-.cards-container {
-  margin: 0 10%;
+.input-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.form-control {
+  border-radius: 6px;
 }

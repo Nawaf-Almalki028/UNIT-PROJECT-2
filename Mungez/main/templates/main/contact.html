@@ -1,0 +1,45 @@
+{% extends "main/base.html" %}
+
+
+{% block title %}
+Home - Page
+{% endblock %}
+
+
+{% block content %}
+
+<div class="containers d-flex justify-content-center align-items-center d-flex flex-column flex-md-row">
+    <div class="contact-container d-flex d-flex-column w-100 ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="">
+                    <div class="input-box">
+                        <form action="Press">
+                            <div class="mb-3">
+                                <label for="idNumber" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="idNumber" placeholder="enter your email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mobile" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="mobile" placeholder="05xxxxxxxx">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idNumber" class="form-label">Details</label>
+                                <textarea for="password" class="form-control" placeholder="descripe your issue"></textarea>
+                            </div>
+                            <a href="" class="btn btn-primary" type="submit">Submit</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <iframe class="m-2 p-2 w-100 rounded-5"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7240.497910221561!2d46.72019147017768!3d24.85534541954872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2efbd2d9c324c7%3A0x9124f530f1b56443!2z2KfZg9in2K_ZitmF2YrYqSDYt9mI2YrZgg!5e0!3m2!1sar!2ssa!4v1753173025246!5m2!1sar!2ssa"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+</div>
+
+
+{% endblock %}
