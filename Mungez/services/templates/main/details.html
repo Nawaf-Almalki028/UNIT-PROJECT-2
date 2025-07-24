@@ -3,31 +3,71 @@
 
 {% block content %}
 
-<div class="container mt-5 mb-5">
-    <div class="card shadow-sm p-3" style="max-width: 500px;">
-        <div class="row g-0">
-            <div class="col-md-4 text-center">
-                <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" 
-                     class="img-fluid rounded-circle p-2" 
-                     alt="Mohammed Issa"
-                     style="width: 120px; height: 120px; object-fit: cover;">
+<div class="container d-flex flex-column align-items-center mt-5">
+    <h1 class="mb-4">Details</h1>
+    <div class="shadow p-3 slice d-flex justify-content-around rounded-5 bg-light w-100" style="max-width: 800px;">
+        <div class="left-container d-flex flex-column align-items-center justify-content-center p-3" style="width: 40%;">
+            <img class="shadow rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;" src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?_gl=1*yjzlvi*_ga*MTgzNjY3Mzg0OC4xNzUyNjYyMzI3*_ga_8JE65Q40S6*czE3NTMyNTQ1ODkkbzQkZzEkdDE3NTMyNTQ2MDEkajQ4JGwwJGgw" alt="profile">
+            <h3 class="mb-1">Name</h3>
+            <small class="mb-2">⭐⭐⭐⭐⭐(0/5)</small>
+            <span class="badge bg-secondary mb-2">Electrical</span>
+            <p class="mb-3">Experience: 10 years</p>
+            <a class="btn btn-primary w-100" href="#">Order now</a>
+        </div>
+        <div class="vr mx-3"></div>
+        <div class="right-container d-flex flex-column p-3" style="width: 55%;">
+            <div class="top-right mb-4">
+                <h3 class="mb-3">Summary</h3>
+                <p class="text-start">I work on fixing leaks and that's so easy to me lorem des patch colalrwlr wdawk</p>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Mohammed Issa</h5>
-                    <p class="card-text mb-1">
-                        <small class="text-muted">Plumbing Specialist</small>
-                    </p>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="text-warning">★★★★★</span>
-                        <a href="views" style="text-decoration: none;" class="text-muted ms-2 "><small>5/5 (27 reviews)</small></a>
-                    </div>
-                    <p class="card-text">
-                        <i class="bi bi-briefcase me-2"></i>10 years experience
-                    </p>
+            <div class="bottom-right">
+                <h3 class="mb-3">Degrees</h3>
+                <div class="d-flex justify-content-left" style="overflow-x: scroll; height: 5rem; padding: 1rem; gap: 1rem;">
+                    <span class="badge bg-info text-dark fs-6 p-2">Degree1</span>
+                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
+                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
+                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
+                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
+                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
+                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<hr/>
+<div class="container d-flex flex-column align-items-center mt-5">
+    <h1 class="mb-4">Comment</h1>
+    <div class="shadow p-3 slice d-flex justify-content-around rounded-5 bg-light w-100" style="max-width: 800px;">
+        <div class="left-container d-flex flex-column align-items-left justify-content-center p-3 text-align" style="width: 100%;">
+            <h3 class="mt-1">Name</h3>
+            <input class="btn btn-outline-primary" type="text" style="width: 100%;"/>
+            <h3 class="mt-3">Comment</h3>
+            <textarea class="btn btn-outline-primary" type="text" style="width: 100%;"></textarea>
+            <h3 class="mt-3">Rate</h3>
+            <select class="mt-3 btn btn-outline-primary">
+                <option disabled selected value="">Rate the worker</option>
+                <option value="1">⭐⭐⭐⭐⭐</option>
+                <option value="1">⭐⭐⭐⭐</option>
+                <option value="1">⭐⭐⭐</option>
+                <option value="1">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+            <a class="mt-3 btn btn-secondary" href="#">Submit</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<h1 class="mb-1 mt-5 text-center">Comments</h1>
+<div class="shadow bg-light rounded-5 container d-flex flex-column justify-content-around mt-2 mb-5 align-items-center">
+    <div class="container d-flex justify-content-around mt-5 align-items-center">
+
+        <h4>name</h4>
+        <small>⭐⭐⭐⭐⭐ (0/5)</small>
+        <small>date 2025/3232/32</small>
+    </div>
+    <div class="bottom-container w-50">
+        <p>I work on fixing leaks and that's so easy to me lorem des patch colalrwlr wdawk</p>
     </div>
 </div>
 
