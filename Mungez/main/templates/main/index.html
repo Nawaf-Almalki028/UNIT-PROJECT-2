@@ -8,7 +8,7 @@ Home - Page
 
 {% block content %}
 
-<section class="head-section">
+<section id="services" class="head-section">
   <div class="head-container d-flex-column justify-content-center">
     <h1 class="p-2">Home Productions</h1>
     <p class="p-2">Contact pro mans</p>
@@ -20,79 +20,208 @@ Home - Page
 
 <div class="cards-container">
 
-  <section id="head-section" class="d-flex flex-column m-5 text-center">
+  <section class="services-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold display-5">Our Premium Services</h2>
+      <p class="text-center text-muted mb-5 lead">Professional solutions for your home and business needs</p>
+      <div class="row g-4">
 
-    <h1 class="mb-5">Our Services</h1>
-
-    <div class="cards">
-      </head>
-
-      <body>
-        <div class="container my-5">
-          <h2 class="text-center mb-4">Our Services</h2>
-          <div class="row g-4">
-
-            <div class="col-md-4">
-              <div class="card service-card shadow">
-                <div class="card-header bg-primary text-white">
-                  <i class="fas fa-wrench"></i> Plumbing
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Plumbing Solutions</h5>
-                  <p class="card-text">Expert plumbing services for installations, leaks, and repairs.</p>
-                  <a href="#" class="btn btn-primary">Order Now</a>
-                </div>
-              </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm service-card border-0 overflow-hidden transition-all">
+            <div class="overflow-hidden">
+              <img src="https://images.pexels.com/photos/4421500/pexels-photo-4421500.jpeg"
+                class="card-img-top img-fluid transition-all" alt="Plumbing Service">
             </div>
-
-            <div class="col-md-4">
-              <div class="card service-card shadow">
-                <div class="card-header bg-warning text-dark">
-                  <i class="fas fa-bolt"></i> Electrical
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Electrical Services</h5>
-                  <p class="card-text">Certified electricians for safe and professional work.</p>
-                  <a href="#" class="btn btn-warning text-dark">Order Now</a>
-                </div>
+            <div class="card-body text-center px-4 pb-4 pt-3">
+              <div
+                class="icon-wrapper bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px;">
+                <i class="bi bi-wrench"></i>
               </div>
+              <h5 class="card-title fw-bold mb-3">Plumbing Services</h5>
+              <p class="card-text text-muted mb-4">Expert plumbing solutions for installations, leaks, and repairs with
+                guaranteed satisfaction.</p>
+              <a href="#" class="btn btn-primary px-4 rounded-pill fw-medium">
+                Order Now <i class="fas fa-arrow-right ms-2"></i>
+              </a>
             </div>
-
-            <div class="col-md-4">
-              <div class="card service-card shadow">
-                <div class="card-header bg-success text-white">
-                  <i class="fas fa-broom"></i> Cleaning
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Professional Cleaning</h5>
-                  <p class="card-text">Thorough cleaning with eco-friendly products.</p>
-                  <a href="#" class="btn btn-success">Order Now</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="card service-card shadow">
-                <div class="card-header bg-danger text-white">
-                  <i class="fas fa-tools"></i> Appliances
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Appliance Repair</h5>
-                  <p class="card-text">We fix fridges, ovens, and more with expert care.</p>
-                  <a href="#" class="btn btn-danger">Order Now</a>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
 
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm service-card border-0 overflow-hidden transition-all">
+            <div class="overflow-hidden">
+              <img src="https://images.pexels.com/photos/4254166/pexels-photo-4254166.jpeg"
+                class="card-img-top img-fluid transition-all" alt="Electrical Service">
+            </div>
+            <div class="card-body text-center px-4 pb-4 pt-3">
+              <div
+                class="icon-wrapper bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px;">
+                <i class="bi bi-lightning-charge-fill"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-3">Electrical Services</h5>
+              <p class="card-text text-muted mb-4">Certified electricians providing safe, reliable solutions for all
+                your electrical needs.</p>
+              <a href="#" class="btn btn-warning px-4 rounded-pill fw-medium text-white">
+                Order Now <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm service-card border-0 overflow-hidden transition-all">
+            <div class="overflow-hidden">
+              <img src="https://images.pexels.com/photos/4239032/pexels-photo-4239032.jpeg"
+                class="card-img-top img-fluid transition-all" alt="Cleaning Service">
+            </div>
+            <div class="card-body text-center px-4 pb-4 pt-3">
+              <div
+                class="icon-wrapper bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px;">
+                <i class="bi bi-brush-fill"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-3">Cleaning Services</h5>
+              <p class="card-text text-muted mb-4">Thorough eco-friendly cleaning solutions for your home or office
+                environment.</p>
+              <a href="#" class="btn btn-success px-4 rounded-pill fw-medium">
+                Order Now <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm service-card border-0 overflow-hidden transition-all">
+            <div class="overflow-hidden">
+              <img src="https://images.pexels.com/photos/5591830/pexels-photo-5591830.jpeg"
+                class="card-img-top img-fluid transition-all" alt="Appliance Repair">
+            </div>
+            <div class="card-body text-center px-4 pb-4 pt-3">
+              <div
+                class="icon-wrapper bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style="width: 60px; height: 60px;">
+                <i class="bi bi-hammer"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-3">Appliance Repair</h5>
+              <p class="card-text text-muted mb-4">Expert repair services for fridges, ovens, washers, and all major
+                appliances.</p>
+              <a href="#" class="btn btn-danger px-4 rounded-pill fw-medium">
+                Order Now <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+    <hr />
+    <section id="about" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h1 class="display-5 fw-bold">Mungez: Trusted Home Services</h1>
+          <p class="lead text-muted mx-auto" style="max-width: 700px;">Delivering excellence in home services since 2025
+          </p>
+        </div>
 
-  </section>
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="pe-lg-5">
+              <h2 class="fw-bold mb-4 display-6">Our Story</h2>
+              <p class="lead text-muted mb-4">Founded in 2025, Mungez began with a simple mission: to make home services
+                reliable, convenient, and affordable.</p>
+              <p class="text-muted mb-4">What started as a small team of dedicated professionals has grown into a
+                trusted network of skilled technicians serving thousands of homes across the country.</p>
+              <p class="text-muted mb-5">Our journey has been fueled by a passion for excellence and a commitment to
+                customer satisfaction. Today, we're proud to be the go-to solution for homeowners seeking quality
+                repairs, maintenance, and improvements.</p>
+              <div class="d-flex flex-wrap gap-3">
+                <a href="#services" class="btn btn-primary px-4 py-3 rounded-pill fw-medium">
+                  Our Services <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="position-relative">
+              <img src="https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg"
+                class="img-fluid rounded-4 shadow-sm-lg" alt="Mungez Team" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <hr />
+    <section id="contact" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-5 fw-bold">Contact Mungez</h2>
+          <p class="lead text-muted mx-auto" style="max-width: 700px;">Have questions or need service? Reach out to our
+            team anytime.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4 p-md-5">
+                <h3 class="fw-bold mb-4">Send us a message</h3>
+                <form>
+                  <div class="mb-4">
+                    <label for="email" class="form-label fw-medium">Email Address</label>
+                    <input type="email" class="form-control py-3" id="email" placeholder="your@email.com" required>
+                    <div class="form-text">We'll never share your email with anyone else.</div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="phone" class="form-label fw-medium">Phone Number</label>
+                    <input type="tel" class="form-control py-3" id="phone" placeholder="05XXXXXXXX" required>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="issue" class="form-label fw-medium">Service Issue</label>
+                    <select class="form-select py-3" id="issue">
+                      <option selected disabled>Select an issue</option>
+                      <option>Service not completed</option>
+                      <option>Issue not resolved</option>
+                      <option>Appliance still malfunctioning</option>
+                      <option>Poor workmanship</option>
+                      <option>Late or missed appointment</option>
+                      <option>Other</option>
+                    </select>
+
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="message" class="form-label fw-medium">Details</label>
+                    <textarea class="form-control py-3" id="message" rows="4"
+                      placeholder="Describe your issue in detail..." required></textarea>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary py-3 px-4 rounded-pill w-100 fw-medium">
+                    Submit Request <i class="fas fa-paper-plane ms-2"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="h-100">
+              <div class="ratio ratio-16x9 h-100 rounded-4 overflow-hidden shadow-sm">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7240.497910221561!2d46.72019147017768!3d24.85534541954872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2efbd2d9c324c7%3A0x9124f530f1b56443!2z2KfZg9in2K_ZitmF2YrYqSDYt9mI2YrZgg!5e0!3m2!1sar!2ssa!4v1753173025246!5m2!1sar!2ssa"
+                  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
+</section>
 
-</div>
 
 {% endblock %}

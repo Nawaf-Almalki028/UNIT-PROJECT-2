@@ -3,72 +3,196 @@
 
 {% block content %}
 
-<div class="container d-flex flex-column align-items-center mt-5">
-    <h1 class="mb-4">Details</h1>
-    <div class="shadow p-3 slice d-flex justify-content-around rounded-5 bg-light w-100" style="max-width: 800px;">
-        <div class="left-container d-flex flex-column align-items-center justify-content-center p-3" style="width: 40%;">
-            <img class="shadow rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;" src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?_gl=1*yjzlvi*_ga*MTgzNjY3Mzg0OC4xNzUyNjYyMzI3*_ga_8JE65Q40S6*czE3NTMyNTQ1ODkkbzQkZzEkdDE3NTMyNTQ2MDEkajQ4JGwwJGgw" alt="profile">
-            <h3 class="mb-1">Name</h3>
-            <small class="mb-2">⭐⭐⭐⭐⭐(0/5)</small>
-            <span class="badge bg-secondary mb-2">Electrical</span>
-            <p class="mb-3">Experience: 10 years</p>
-            <a class="btn btn-primary w-100" href="#">Order now</a>
-        </div>
-        <div class="vr mx-3"></div>
-        <div class="right-container d-flex flex-column p-3" style="width: 55%;">
-            <div class="top-right mb-4">
-                <h3 class="mb-3">Summary</h3>
-                <p class="text-start">I work on fixing leaks and that's so easy to me lorem des patch colalrwlr wdawk</p>
-            </div>
-            <div class="bottom-right">
-                <h3 class="mb-3">Degrees</h3>
-                <div class="d-flex justify-content-left" style="overflow-x: scroll; height: 5rem; padding: 1rem; gap: 1rem;">
-                    <span class="badge bg-info text-dark fs-6 p-2">Degree1</span>
-                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
-                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
-                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
-                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
-                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
-                    <span class="badge bg-info text-dark fs-6 p-2">Degree2</span>
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-lg overflow-hidden">
+          <div class="row g-0">
+            <div class="col-md-5 bg-light p-4 d-flex flex-column align-items-center">
+              <div class="position-relative mb-3">
+                <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg"
+                  class="rounded-circle shadow" style="width: 150px; height: 150px; object-fit: cover;"
+                  alt="Mohammed's profile">
+              </div>
+              <h4 class="mb-1 fw-bold">{{worker.name}}</h4>
+              <div class="d-flex align-items-center mb-2">
+                <div class="text-warning me-2">
+                  {% for i in "12345"|make_list %}
+                  {% if worker.rating >= forloop.counter %}
+                  <i class="bi bi-star-fill"></i>
+                  {% else %}
+                  <i class="bi bi-star"></i>
+                  {% endif %}
+                  {% endfor %}
                 </div>
+                <small class="text-muted">{{worker.rating}} (128 reviews)</small>
+              </div>
+              <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 mb-3">
+                <i class="bi bi-lightning-fill me-1"></i> {{worker.category}}
+              </span>
+              <p class="text-center mb-4">
+                <i class="bi bi-briefcase-fill me-2 text-muted"></i> 10+ years experience
+              </p>
+              <a href="#" class="btn btn-primary w-100 py-2 rounded-pill fw-medium">
+                <i class="bi bi-journal-text"></i> Book Appointment
+              </a>
             </div>
-        </div>
-    </div>
-</div>
-<hr/>
-<div class="container d-flex flex-column align-items-center mt-5">
-    <h1 class="mb-4">Comment</h1>
-    <div class="shadow p-3 slice d-flex justify-content-around rounded-5 bg-light w-100" style="max-width: 800px;">
-        <div class="left-container d-flex flex-column align-items-left justify-content-center p-3 text-align" style="width: 100%;">
-            <h3 class="mt-1">Name</h3>
-            <input class="btn btn-outline-primary" type="text" style="width: 100%;"/>
-            <h3 class="mt-3">Comment</h3>
-            <textarea class="btn btn-outline-primary" type="text" style="width: 100%;"></textarea>
-            <h3 class="mt-3">Rate</h3>
-            <select class="mt-3 btn btn-outline-primary">
-                <option disabled selected value="">Rate the worker</option>
-                <option value="1">⭐⭐⭐⭐⭐</option>
-                <option value="1">⭐⭐⭐⭐</option>
-                <option value="1">⭐⭐⭐</option>
-                <option value="1">⭐⭐</option>
-                <option value="1">⭐</option>
-            </select>
-            <a class="mt-3 btn btn-secondary" href="#">Submit</a>
-        </div>
-    </div>
-</div>
-<hr/>
-<h1 class="mb-1 mt-5 text-center">Comments</h1>
-<div class="shadow bg-light rounded-5 container d-flex flex-column justify-content-around mt-2 mb-5 align-items-center">
-    <div class="container d-flex justify-content-around mt-5 align-items-center">
 
-        <h4>name</h4>
-        <small>⭐⭐⭐⭐⭐ (0/5)</small>
-        <small>date 2025/3232/32</small>
+            <div class="col-md-7">
+              <div class="card-body p-4">
+                <h3 class="fw-bold mb-4">Professional Summary</h3>
+                <p class="mb-4">{{worker.about}}</p>
+
+                <h3 class="fw-bold mb-3">Certifications</h3>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                  <span class="badge bg-info bg-opacity-10 text-info px-3 py-2 border border-info">
+                    <i class="bi bi-patch-check-fill"></i> Electrican
+                  </span>
+                </div>
+
+                <h3 class="fw-bold mb-3">Service Areas</h3>
+                <ul class="list-unstyled mb-4">
+                  <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Wiring Installation</li>
+                  <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Circuit Breaker Repair</li>
+                  <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Electrical Inspections</li>
+                  <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Lighting Installation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="bottom-container w-50">
-        <p>I work on fixing leaks and that's so easy to me lorem des patch colalrwlr wdawk</p>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h2 class="fw-bold mb-4 text-center">Leave a Review</h2>
+            <form>
+              <div class="mb-4">
+                <label class="form-label fw-medium">Your Name</label>
+                <input type="text" class="form-control py-2" placeholder="Enter your name">
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-medium">Your Review</label>
+                <textarea class="form-control py-2" rows="4" placeholder="Share your experience..."></textarea>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-medium">Rating</label>
+                <div class="rating-stars">
+                  <div class="d-flex justify-content-center">
+                    <input type="radio" id="star5" name="rating" value="5">
+                    <label for="star5" class="star"><i class="bi bi-star-fill"></i></label>
+                    <input type="radio" id="star4" name="rating" value="4">
+                    <label for="star4" class="star"><i class="bi bi-star-fill"></i></label>
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3" class="star"><i class="bi bi-star-fill"></i></label>
+                    <input type="radio" id="star2" name="rating" value="2">
+                    <label for="star2" class="star"><i class="bi bi-star-fill"></i></label>
+                    <input type="radio" id="star1" name="rating" value="1">
+                    <label for="star1" class="star"><i class="bi bi-star-fill"></i></label>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-medium">
+                Submit Review
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-5 text-center">Customer Reviews</h2>
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h5 class="fw-bold mb-0">Ahmed Sami</h5>
+                <small class="text-muted">March 15, 2024</small>
+              </div>
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+            <p class="mb-0">Mohammed fixed our wiring issue quickly and professionally. He explained everything clearly
+              and even gave us tips for maintenance. Highly recommend his services!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h5 class="fw-bold mb-0">Sarah Johnson</h5>
+                <small class="text-muted">February 28, 2024</small>
+              </div>
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+            <p class="mb-0">Excellent work on our home's electrical system. Mohammed was punctual, professional, and his
+              prices were fair. Will definitely call him again for future electrical needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h5 class="fw-bold mb-0">David Wilson</h5>
+                <small class="text-muted">January 10, 2024</small>
+              </div>
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+            <p class="mb-0">Good service overall. Fixed our circuit breaker issue but was a bit late to the appointment.
+              Work quality was excellent though.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+    </div>
+  </div>
+</section>
 
 {% endblock %}

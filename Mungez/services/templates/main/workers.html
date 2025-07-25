@@ -2,35 +2,49 @@
 {% block content %}
 
 <div class="cards-container">
-    <section id="head-section" class="d-flex flex-column m-5 text-center">
-        <div class="cards">
-            <div class="container my-1">
-                <h2 class="text-center mb-4">Workers</h2>
-                <div class="row g-4">
+    <section id="team" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="text-muted mx-auto" style="max-width: 700px;">Workers Page</h1>
+            </div>
 
-                    <div class="col-md-3">
-                        <div class="card service-card shadow">
-                            <div class="rounded-3 bg-primary text-white">
-                                <img class="rounded-1" style="width: 100%; height: 100%; object-fit: cover;"
-                                    src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?_gl=1*yjzlvi*_ga*MTgzNjY3Mzg0OC4xNzUyNjYyMzI3*_ga_8JE65Q40S6*czE3NTMyNTQ1ODkkbzQkZzEkdDE3NTMyNTQ2MDEkajQ4JGwwJGgw"
-                                    alt="">
+            {% for worker in workers %}
+            {% if worker.activated == True %}
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden transition-all hover-effect">
+                        <div class="position-relative">
+                            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg"
+                                class="card-img-top" alt="{{worker.name}}" loading="lazy"
+                                style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                    <i class="fas fa-star me-1"></i> {{worker.rating}}
+                                </span>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Mohammed bagdos</h5>
-                                <p class="btn btn-secondary" style="font-size: 0.rem;">Electrical</p>
-                                <p class="card-text">Expert plumbing services for installations, leaks, and repairs.
-                                </p>
-                                <a href="#" class="btn btn-primary">Get Help</a>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold mb-1">{{worker.name}}</h5>
+                            <span
+                                class="d-inline-block bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill mb-3">
+                                <i class="bi bi-lightning-fill me-1"></i> {{worker.category}}
+                            </span>
+                            <p class="card-text text-muted mb-4">{{worker.about}}</p>
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <a href="{% url 'services:services_detail_page' worker.id %}" class="btn btn-primary px-4 rounded-pill">
+                                    <i class="fas fa-calendar me-2"></i> Book Now
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+            {% endif %}
+            {% endfor %}
 
         </div>
-
     </section>
+
 </div>
 
 {% endblock %}
