@@ -158,6 +158,15 @@ label {
   color: #ffc107;
 }
 
+.role-wrapper input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + .role-option {
+  background-color: whitesmoke;
+  color: white;
+}
+
 .card {
   transition: transform 0.3s ease;
 }

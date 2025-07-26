@@ -8,13 +8,13 @@
                 <h1 class="text-muted mx-auto" style="max-width: 700px;">Workers Page</h1>
             </div>
 
-            {% for worker in workers %}
-            {% if worker.activated == True %}
             <div class="row g-4 justify-content-center">
+                {% for worker in workers %}
+                {% if worker.activated == True %}
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 border-0 shadow-sm overflow-hidden transition-all hover-effect">
                         <div class="position-relative">
-                            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg"
+                            <img src="{{worker.profile_img.url}}"
                                 class="card-img-top" alt="{{worker.name}}" loading="lazy"
                                 style="height: 250px; object-fit: cover;">
                             <div class="position-absolute top-0 end-0 m-3">
@@ -38,9 +38,9 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
 
         </div>
     </section>

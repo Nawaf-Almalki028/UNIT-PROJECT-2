@@ -11,22 +11,21 @@
           <div class="row g-0">
             <div class="col-md-5 bg-light p-4 d-flex flex-column align-items-center">
               <div class="position-relative mb-3">
-                <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg"
-                  class="rounded-circle shadow" style="width: 150px; height: 150px; object-fit: cover;"
-                  alt="Mohammed's profile">
+                <img src="{{worker.profile_img.url}}" class="rounded-circle shadow"
+                  style="width: 150px; height: 150px; object-fit: cover;" alt="Mohammed's profile">
               </div>
               <h4 class="mb-1 fw-bold">{{worker.name}}</h4>
               <div class="d-flex align-items-center mb-2">
                 <div class="text-warning me-2">
                   {% for i in "12345"|make_list %}
-                  {% if worker.rating >= forloop.counter %}
+                  {% if rate.average >= forloop.counter %}
                   <i class="bi bi-star-fill"></i>
                   {% else %}
                   <i class="bi bi-star"></i>
                   {% endif %}
                   {% endfor %}
                 </div>
-                <small class="text-muted">{{worker.rating}} (128 reviews)</small>
+                <small class="text-muted">{{rate.average}} ({{rate.raters}} reviews)</small>
               </div>
               <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 mb-3">
                 <i class="bi bi-lightning-fill me-1"></i> {{worker.category}}
@@ -74,15 +73,18 @@
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4">
             <h2 class="fw-bold mb-4 text-center">Leave a Review</h2>
-            <form>
+            <form method="POST" action="{% url 'services:services_detail_page' worker.id %}"
+              enctype="multipart/form-data">
+              {% csrf_token %}
               <div class="mb-4">
-                <label class="form-label fw-medium">Your Name</label>
-                <input type="text" class="form-control py-2" placeholder="Enter your name">
+                <label class="form-label fw-medium">{Your Name}</label>
+                <input name="name" type="text" class="form-control py-2" placeholder="Enter your name">
               </div>
 
               <div class="mb-4">
                 <label class="form-label fw-medium">Your Review</label>
-                <textarea class="form-control py-2" rows="4" placeholder="Share your experience..."></textarea>
+                <textarea name="comment" class="form-control py-2" rows="4"
+                  placeholder="Share your experience..."></textarea>
               </div>
 
               <div class="mb-4">
@@ -118,77 +120,35 @@
   <div class="container">
     <h2 class="fw-bold mb-5 text-center">Customer Reviews</h2>
 
+    {% for rate_comment in comments %}
+    {% if rate_comment.worker_id == worker.id %}
     <div class="row justify-content-center mb-4">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div>
-                <h5 class="fw-bold mb-0">Ahmed Sami</h5>
-                <small class="text-muted">March 15, 2024</small>
+                <h5 class="fw-bold mb-0">{{rate_comment.name}}</h5>
+                <small class="text-muted">{{rate_comment.created_at}}</small>
               </div>
               <div class="text-warning">
+                {% for i in "12345"|make_list %}
+                {% if rate_comment.rating >= forloop.counter %}
                 <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
+                {% else %}
+                <i class="bi bi-star"></i>
+                {% endif %}
+                {% endfor %}
               </div>
             </div>
-            <p class="mb-0">Mohammed fixed our wiring issue quickly and professionally. He explained everything clearly
-              and even gave us tips for maintenance. Highly recommend his services!</p>
+            <p class="mb-0">{{ rate_comment.comment }}</p>
           </div>
         </div>
       </div>
     </div>
+    {% endif %}
 
-    <div class="row justify-content-center mb-4">
-      <div class="col-lg-8">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div>
-                <h5 class="fw-bold mb-0">Sarah Johnson</h5>
-                <small class="text-muted">February 28, 2024</small>
-              </div>
-              <div class="text-warning">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </div>
-            </div>
-            <p class="mb-0">Excellent work on our home's electrical system. Mohammed was punctual, professional, and his
-              prices were fair. Will definitely call him again for future electrical needs.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div>
-                <h5 class="fw-bold mb-0">David Wilson</h5>
-                <small class="text-muted">January 10, 2024</small>
-              </div>
-              <div class="text-warning">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="far fa-star"></i>
-              </div>
-            </div>
-            <p class="mb-0">Good service overall. Fixed our circuit breaker issue but was a bit late to the appointment.
-              Work quality was excellent though.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
 
     <div class="text-center mt-4">
     </div>

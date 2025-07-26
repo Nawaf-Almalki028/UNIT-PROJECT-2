@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'services',
+    'accounting',
     "django_browser_reload",
 ]
 

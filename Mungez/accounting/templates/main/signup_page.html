@@ -1,0 +1,113 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="py-5 bg-light">
+  <div class="container rounded-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h2 class="fw-bold mb-4 text-center">SIGN UP</h2>
+            <form method="POST" action="{% url 'accounting:signup_page' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="name-group d-flex justify-content-around gap-3">
+                <div class="mb-4 w-100">
+                  <label class="form-label fw-medium text-muted">First name</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-tag text-primary"></i></span>
+                    <input name="firstname" type="text" class="form-control py-2" placeholder="Enter your first name" required>
+                  </div>
+                </div>
+                <div class="mb-4 w-100">
+                  <label class="form-label fw-medium text-muted">Last name</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-tag text-primary"></i></span>
+                    <input name="lastname" type="text" class="form-control py-2"
+                      placeholder="Enter your last name" required>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label fw-medium text-muted">Username</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fa-solid fa-user-plus text-primary"></i></span>
+                  <input name="username" type="text" class="form-control py-2" placeholder="Enter your Username" required>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label fw-medium text-muted">Email</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="fa-solid fa-envelope text-primary"></i></span>
+                  <input name="email" type="email" class="form-control py-2" placeholder="Enter your email" required>
+                </div>
+              </div>
+              <div class="password-group d-flex justify-content-around gap-3">
+                <div class="mb-4 w-100">
+                  <label class="form-label fw-medium text-muted">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-lock text-primary"></i></span>
+                    <input name="password" type="password" class="form-control py-2" placeholder="Enter your password" required>
+                  </div>
+                </div>
+                <div class="mb-4 w-100">
+                  <label class="form-label fw-medium text-muted">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-lock text-primary"></i></span>
+                    <input name="repeat-password" type="password" class="form-control py-2"
+                      placeholder="Repeat your password" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-4 mt-4">
+                <label class="form-label fw-medium text-muted">Register as</label>
+                <div class="row g-3">
+
+                  <div class="col-12 col-md-6">
+                    <input type="radio" id="Worker" name="auth" value="worker" class="d-none">
+                    <label for="Worker"
+                      class="role-option w-100 p-4 shadow-sm rounded-4 d-flex flex-column align-items-center justify-content-center text-primary fs-5 text-center">
+                      <i class="bi bi-briefcase-fill me-2 text-primary fs-2"></i>
+                      Worker
+                    </label>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <input type="radio" id="Customer" name="auth" value="customer" class="d-none">
+                    <label for="Customer"
+                      class="role-option w-100 p-4 shadow-sm rounded-4 d-flex flex-column align-items-center justify-content-center text-primary fs-5 text-center">
+                      <i class="bi bi-person-fill me-2 text-primary fs-2"></i>
+                      Customer
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-check mt-2 mb-3">
+                <input class="form-check-input" type="checkbox" id="terms" required>
+                <label class="form-check-label text-muted" for="terms">
+                  <small>I agree to the <a href="{% url 'accounting:terms_of_service' %}">Terms of Service</a></small>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-medium">
+                <i class="fa-solid fa-user-plus"></i>
+                SIGN UP
+              </button>
+
+              <div class="text-center mt-2 mb-3">
+                <span>
+                  Already have an account? <a href="{% url 'accounting:signin_page' %}">Sign in</a>
+                </span>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

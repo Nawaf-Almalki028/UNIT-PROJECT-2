@@ -15,13 +15,13 @@ class Workers(models.Model):
   category = models.CharField(max_length=30,choices=CATEGORY_CHOICES)
   rating = models.DecimalField(max_digits=2, decimal_places=1)
   created_at = models.DateTimeField(auto_now_add=True)
-  profile_img = models.ImageField(default='images/default.jpg')
+  profile_img = models.ImageField(default='images/default.jpg', upload_to='images/')
   activated = models.BooleanField(default=False)
 
 
 
-class Certificates(models.Model):
-  worker = models.ForeignKey(Workers, on_delete=models.CASCADE, related_name="certificate")
+class Degrees(models.Model):
+  worker = models.ForeignKey(Workers, on_delete=models.CASCADE, related_name="degrees")
   name = models.CharField(max_length=30)
 
 class ServiceAreas(models.Model):
@@ -29,8 +29,8 @@ class ServiceAreas(models.Model):
   name = models.CharField(max_length=40)
 
 class Comments(models.Model):
-  worker = models.ForeignKey(Workers, on_delete=models.CASCADE, related_name="Comments")
+  worker = models.ForeignKey(Workers, on_delete=models.CASCADE, related_name="comments")
   name = models.CharField(max_length=40)
-  date_now = models.DateTimeField(auto_now_add=True)
+  created_at = models.DateTimeField(auto_now_add=True)
   rating = models.DecimalField(max_digits=2, decimal_places=1)
   comment = models.CharField(max_length=200)
