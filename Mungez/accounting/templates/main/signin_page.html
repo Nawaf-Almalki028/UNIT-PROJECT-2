@@ -2,20 +2,25 @@
 {% load static %}
 
 {% block content %}
+
 <section class="py-5 bg-light">
   <div class="container rounded-4">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4">
-            <h2 class="fw-bold mb-4 text-center">SIGN UP</h2>
-            <form method="POST" action="{% url 'main:home_page' %}" enctype="multipart/form-data">
+            <div class="error w-100 p-2 d-flex justify-content-center align-items-center text-danger">
+              <p>{{error}}</p>
+            </div>
+            <h2 class="fw-bold mb-4 text-center">SIGN IN</h2>
+            <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <div class="mb-4">
-                <label class="form-label fw-medium text-muted">Email</label>
+                <label class="form-label fw-medium text-muted">Username</label>
                 <div class="input-group">
                   <span class="input-group-text bg-white"><i class="fa-solid fa-envelope text-primary"></i></span>
-                  <input name="email" type="email" class="form-control py-2" placeholder="Enter your email" required>
+                  <input name="username" type="text" class="form-control py-2" placeholder="Enter your username"
+                    required>
                 </div>
               </div>
               <div class="password-group d-flex justify-content-around gap-3">
@@ -23,7 +28,8 @@
                   <label class="form-label fw-medium text-muted">Password</label>
                   <div class="input-group">
                     <span class="input-group-text bg-white"><i class="fa-solid fa-lock text-primary"></i></span>
-                    <input name="password" type="password" class="form-control py-2" placeholder="Enter your password" required>
+                    <input name="password" type="password" class="form-control py-2" placeholder="Enter your password"
+                      required>
                   </div>
                 </div>
               </div>

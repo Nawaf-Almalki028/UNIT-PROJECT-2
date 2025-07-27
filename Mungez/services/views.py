@@ -7,30 +7,34 @@ def services_main_page(request:HttpRequest):
   return render(request, "main/workers.html",{"workers":get_workers})
 
 def services_detail_page(request: HttpRequest, worker_id):
-  get_worker = Workers.objects.get(pk=worker_id)
+  if request.user.is_authenticated:
+    get_worker = Workers.objects.get(pk=worker_id)
 
-  get_comments = Comments.objects.filter(worker_id=worker_id)
+    get_comments = Comments.objects.filter(worker_id=worker_id)
 
-  total_raters = get_comments.count()
-  rating_sum = sum(float(comment.rating) for comment in get_comments)
+    total_raters = get_comments.count()
+    rating_sum = sum(float(comment.rating) for comment in get_comments)
 
-  average_rating = round(rating_sum / total_raters, 1) if total_raters > 0 else 0.0
+    average_rating = round(rating_sum / total_raters, 1) if total_raters > 0 else 0.0
 
-  rates = {
-      "raters": total_raters,
-      "average": average_rating
-  }
+    rates = {
+        "raters": total_raters,
+        "average": average_rating
+    }
 
-  if request.method == "POST":
-    name = request.POST.get("name")
-    rating = request.POST.get("rating")
-    comment = request.POST.get("comment")
-    if name and rating and comment:
-      print("hereeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-      Comments.objects.create(worker=get_worker,name=name,comment=comment,rating=rating)
-      return redirect('services:services_detail_page', worker_id=worker_id)
+    if request.method == "POST":
+      name = request.POST.get("name")
+      rating = request.POST.get("rating")
+      comment = request.POST.get("comment")
+      if name and rating and comment:
+        print("hereeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        Comments.objects.create(worker=get_worker,name=name,comment=comment,rating=rating)
+        return redirect('services:services_detail_page', worker_id=worker_id)
+    return render(request, "main/details.html", {"worker":get_worker,"comments":get_comments,"rate":rates})
+  
+  else:
+    return redirect('accounting:signin_page')
 
-  return render(request, "main/details.html", {"worker":get_worker,"comments":get_comments,"rate":rates})
 
 def add_worker(request:HttpRequest):
   if request.method == "POST":

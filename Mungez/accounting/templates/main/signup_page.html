@@ -2,12 +2,18 @@
 {% load static %}
 
 {% block content %}
+
 <section class="py-5 bg-light">
   <div class="container rounded-4">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4">
+
+            <div class="error w-100 p-2 d-flex justify-content-center align-items-center text-danger">
+              <p>{{error}}</p>
+            </div>
+
             <h2 class="fw-bold mb-4 text-center">SIGN UP</h2>
             <form method="POST" action="{% url 'accounting:signup_page' %}" enctype="multipart/form-data">
               {% csrf_token %}
@@ -65,7 +71,7 @@
                 <div class="row g-3">
 
                   <div class="col-12 col-md-6">
-                    <input type="radio" id="Worker" name="auth" value="worker" class="d-none">
+                    <input type="radio" id="Worker" name="auth" value="True" class="d-none">
                     <label for="Worker"
                       class="role-option w-100 p-4 shadow-sm rounded-4 d-flex flex-column align-items-center justify-content-center text-primary fs-5 text-center">
                       <i class="bi bi-briefcase-fill me-2 text-primary fs-2"></i>
@@ -74,7 +80,7 @@
                   </div>
 
                   <div class="col-12 col-md-6">
-                    <input type="radio" id="Customer" name="auth" value="customer" class="d-none">
+                    <input type="radio" id="Customer" name="auth" value="False" class="d-none">
                     <label for="Customer"
                       class="role-option w-100 p-4 shadow-sm rounded-4 d-flex flex-column align-items-center justify-content-center text-primary fs-5 text-center">
                       <i class="bi bi-person-fill me-2 text-primary fs-2"></i>
