@@ -4,8 +4,67 @@
 {% block content %}
 
 {% for account in accounts %}
+<div class="container">
+    <div class="user-card rounded-4 shadow-sm bg-white m-4 p-4">
+        <div class="d-flex justify-content-between align-items-start">
 
-<h1>{{account}}</h1>
+            <div class="profile-section d-flex align-items-center gap-4">
+                <img class="rounded-circle shadow-sm" src="{{account.profile.profile_img.url}}"
+                    style="width: 80px; height: 80px;" alt="Profile">
+                <div>
+                    <h5 class="mb-1">{{account.username}}</h5>
+                    <p class="text-muted small mb-1">Member since: {{account.date_joined|date:"Y F"}}</p>
+                    <span class="badge bg-success">{{account.profile.activated|yesno:"Activated,DeActivated"}}</span>
+                    <span class="badge bg-primary ms-1">Worker</span>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-gear-fill"></i> SETTINGS </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="font-size: 12px;" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item" href="{% url 'accounting:activate_user' account.id %}"><i
+                                class="bi bi-person me-2"></i>Activate {{account.username}}</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'accounting:deactivate_user' account.id %}"><i
+                                class="bi bi-person me-2"></i>DeActivate {{account.username}}</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'accounting:delete_user' account.id %}"><i
+                                class="bi bi-person me-2"></i>Delete {{account.username}}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="my-3">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-2">
+                    <span class="text-muted small">Username:</span>
+                    <span class="d-block">{{account.username}}</span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-muted small">Email:</span>
+                    <span class="d-block">{{account.email}}</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2">
+                    <span class="text-muted small">Account Type:</span>
+                    <span class="d-block">{{account.profile.is_worker|yesno:"Worker,Customer"}}</span>
+                </div>
+                <div class="mb-2">
+                    <span class="text-muted small">Last Login:</span>
+                    <span class="d-block">{{account.last_login}}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 {% endfor %}
 

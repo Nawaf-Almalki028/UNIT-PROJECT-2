@@ -3,18 +3,57 @@
 
 {% block content %}
 
+{% if user.profile.activated %}
+<div class="warning bg-danger p-3 text-center">
+  <h5 class="text-white">Please wait for the staff to activate your account.</h5>
+</div>
+{% else %}
+<div class="warning bg-primary p-3 text-center">
+  <h5 class="text-white">You Are Activated</h5>
+</div>
+{% endif %}
+
 <div class="container py-5">
   <div class="row">
     <div class="col-lg-4">
       <div class="card shadow-sm mb-4">
         <div class="card-body text-center">
-          <img
-            src="{{user.profile.profile_img.url}}"
-            alt="Profile" class="rounded-circle img-fluid mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+          <img src="{{user.profile.profile_img.url}}" alt="Profile" class="rounded-circle img-fluid mb-3"
+            style="width: 150px; height: 150px; object-fit: cover;">
           <h3>{{ user.username }}</h3>
           <p class="text-muted mb-1">{{ user.email }}</p>
           <p class="text-muted mb-4">Member since: {{ user.date_joined|date:"F Y" }}</p>
         </div>
+        {% if user.profile.is_worker  %}
+        <div class="m-4">
+          <div class="inputs">
+
+            <label class="form-label fw-medium text-muted">Certificate Name</label>
+            <div class="input-group">
+              <span class="input-group-text bg-white"><i class="bi bi-patch-check text-primary"></i></span>
+              <input name="certificates" type="text" class="form-control py-2" placeholder="Enter your Certificate Name">
+              <button name="certificate_button" type="submit" class="btn btn-primary input-group-text d-flex align-items-center" href="#"><i class="text-white bi bi-plus-circle text-primary"></i></button>
+            </div>
+
+            <form action="{% url 'accounting:profile_page' %}" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+              <label class="form-label fw-medium text-muted mt-3">Service Areas</label>
+            <div class="input-group">
+              <span class="input-group-text bg-white"><i class="bi bi-patch-check text-primary"></i></span>
+              <input name="serviceareas" type="text" class="form-control py-2" placeholder="Enter your Service Areas" required>
+              <button name="service_button" type="submit" class="btn btn-primary input-group-text d-flex align-items-center" href="#"><i class="text-white bi bi-plus-circle text-primary"></i></button>
+            </div>
+            </form>
+
+            <div class="badge-container mt-5">
+            {% for area in user.profile.service_area.all %}
+              <a href="#" class="badge btn btn-primary">{{ area.name }}</a>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
 
@@ -43,7 +82,7 @@
       {% if request.user.profile.is_worker %}
       <div class="card shadow-sm">
         <div class="card-body">
-          <h5 class="card-title border-bottom pb-3 mb-4">Worker Sign</h5>
+          <h5 class="card-title border-bottom pb-3 mb-4">Worker application</h5>
 
           <form method="POST" action="{% url 'accounting:profile_page' %}" enctype="multipart/form-data">
             {% csrf_token %}
@@ -51,14 +90,16 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="form-floating mb-3">
-                  <input type="text" disabled value="{{user.first_name}} {{user.last_name}}" class="form-control" id="name" name="name" placeholder="Name" required>
+                  <input type="text" disabled value="{{user.first_name}} {{user.last_name}}" class="form-control"
+                    id="name" name="name" placeholder="Name" required>
                   <label for="name">Full Name</label>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-floating mb-3">
-                  <input value="{{user.email}}" disabled type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                  <input value="{{user.email}}" disabled type="email" class="form-control" id="email" name="email"
+                    placeholder="Email" required>
                   <label for="email">Email</label>
                 </div>
               </div>
@@ -92,8 +133,8 @@
               </div>
 
               <div class="col-12">
-                <button type="submit" class="btn btn-primary px-4 py-2">
-                  <i class="bi bi-person-plus me-2"></i> Sign
+                <button name="apply_button" type="submit" class="btn btn-primary px-4 py-2">
+                  <i class="bi bi-person-plus me-2"></i> Apply
                 </button>
               </div>
             </div>

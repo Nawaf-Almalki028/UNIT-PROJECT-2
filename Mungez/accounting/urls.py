@@ -11,8 +11,8 @@ urlpatterns = [
     path('profile/', views.profile_page, name="profile_page"),
     path('admin/', views.admin_page, name="admin_page"),
     path('admin/', views.admin_page, name="edit_user"),
-    path('admin/', views.admin_page, name="activate_user"),
-    path('admin/', views.admin_page, name="deactivate_user"),
-    path('admin/', views.admin_page, name="delete_user"),
+    path('<int:user_id>/activate/', views.activate_user, name="activate_user"),
+    path('<int:user_id>/deactivate/', views.deactivate_user, name="deactivate_user"),
+    path('<int:user_id>/delete/', views.delete_user, name="delete_user"),
     path('terms-of-service/', views.terms_of_service, name="terms_of_service"),
 ]

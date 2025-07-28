@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpRequest,HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from .models import Profile
+from .models import Profile,Degrees,Comments,ServiceAreas
 
 def signin_page(request: HttpRequest):
   if request.method == "POST":
@@ -79,11 +79,22 @@ def profile_page(request:HttpRequest):
   if request.user.is_authenticated:
     if request.method == "POST":
       profile = Profile.objects.get(user=request.user)
-      profile.about=request.POST["about"]
-      profile.category=request.POST["category"]
-      profile.profile_img=request.FILES['image']
-      profile.save()
-      return redirect("accounting:profile_page")
+      if "service_button" in request.POST:
+        name = request.POST.get("serviceareas")
+        if name:
+          ServiceAreas.objects.create(
+              profile=profile,
+              name=name,
+          )
+      elif "certificate_button" in request.POST:
+        print("yoooooooooooooooooooooooo")
+      else:
+        print(request.POST)
+        profile.about=request.POST["about"]
+        profile.category=request.POST["category"]
+        profile.profile_img=request.FILES['image']
+        profile.save()
+        return redirect("accounting:profile_page")
     print(request)
     return render(request,'main/profile.html',{"profile":"True"})
   else:
@@ -103,3 +114,34 @@ def admin_page(request:HttpRequest):
       return render(request,'main/admin.html',{"profile":"True","accounts":get_users})
   else:
     return redirect('main:home_page')
+  
+def activate_user(request:HttpRequest, user_id:int):
+  if request.user.is_authenticated:
+    if request.user.is_staff:
+      get_users = User.objects.get(id=user_id)
+      get_users.profile.activated = True
+      get_users.profile.save()
+      return redirect("accounting:admin_page")
+  else:
+    return redirect('main:home_page')
+  
+def deactivate_user(request:HttpRequest, user_id):
+  if request.user.is_authenticated:
+    if request.user.is_staff:
+      get_users = User.objects.get(id=user_id)
+      get_users.profile.activated = False
+      get_users.profile.save()
+      return redirect("accounting:admin_page")
+  else:
+    return redirect('main:home_page')
+  
+  
+def delete_user(request:HttpRequest, user_id):
+  if request.user.is_authenticated:
+    if request.user.is_staff:
+      get_users = User.objects.get(id=user_id)
+      get_users.delete()
+      return redirect("accounting:admin_page")
+  else:
+    return redirect('main:home_page')
+  
