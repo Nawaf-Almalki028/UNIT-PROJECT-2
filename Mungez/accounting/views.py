@@ -15,7 +15,6 @@ def signin_page(request: HttpRequest):
       login(request, user)
       return redirect("main:home_page")
     else:
-      # pass
       return render(request, "main/signin_page.html", {"error":"Wrong username or password."})
     
   else:
@@ -61,11 +60,46 @@ def signup_page(request:HttpRequest):
     profile.save()
 
     return redirect("accounting:signin_page")
-  return render(request,"main/signup_page.html")
+  if request.user.is_authenticated:
+    return render(request,"main/signup_page.html",{"profile":"True"})
+  else:
+    return render(request,"main/signup_page.html")
 
 def terms_of_service(request:HttpRequest):
-  return render(request,"main/terms_of_service.html")
+  if request.user.is_authenticated:
+    return render(request,"main/terms_of_service.html",{"profile":"True"})
+  else:
+    return render(request,"main/terms_of_service.html")
 
 def logout_page(request:HttpRequest):
   logout(request)
-  return redirect('accounting:signin_page')
+  return redirect('main:home_page')
+
+def profile_page(request:HttpRequest):
+  if request.user.is_authenticated:
+    if request.method == "POST":
+      profile = Profile.objects.get(user=request.user)
+      profile.about=request.POST["about"]
+      profile.category=request.POST["category"]
+      profile.profile_img=request.FILES['image']
+      profile.save()
+      return redirect("accounting:profile_page")
+    print(request)
+    return render(request,'main/profile.html',{"profile":"True"})
+  else:
+    return redirect('main:home_page')
+
+def admin_page(request:HttpRequest):
+  if request.user.is_authenticated:
+    # if request.method == "POST":
+    #   profile = Profile.objects.get(user=request.user)
+    #   profile.about=request.POST["about"]
+    #   profile.category=request.POST["category"]
+    #   profile.profile_img=request.FILES['image']
+    #   profile.save()
+    #   return redirect("accounting:profile_page")
+    if request.user.is_staff:
+      get_users = User.objects.all()
+      return render(request,'main/admin.html',{"profile":"True","accounts":get_users})
+  else:
+    return redirect('main:home_page')

@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for account in accounts %}
+
+<h1>{{account}}</h1>
+
+{% endfor %}
+
+{% endblock %}

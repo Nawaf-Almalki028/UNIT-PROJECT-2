@@ -77,8 +77,9 @@
               enctype="multipart/form-data">
               {% csrf_token %}
               <div class="mb-4">
-                <label class="form-label fw-medium">{Your Name}</label>
-                <input name="name" type="text" class="form-control py-2" placeholder="Enter your name">
+                <label class="form-label fw-medium">Your Name</label>
+                <input name="name" value="{{user.first_name}} {{user.last_name}}" disabled type="text"
+                  class="form-control py-2" placeholder="Enter your name">
               </div>
 
               <div class="mb-4">
@@ -121,15 +122,14 @@
     <h2 class="fw-bold mb-5 text-center">Customer Reviews</h2>
 
     {% for rate_comment in comments %}
-    {% if rate_comment.worker_id == worker.id %}
     <div class="row justify-content-center mb-4">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div>
-                <h5 class="fw-bold mb-0">{{rate_comment.name}}</h5>
-                <small class="text-muted">{{rate_comment.created_at}}</small>
+                <h5 class="fw-bold mb-0">{{ rate_comment.name }}</h5>
+                <small class="text-muted">{{ rate_comment.created_at }}</small>
               </div>
               <div class="text-warning">
                 {% for i in "12345"|make_list %}
@@ -146,9 +146,8 @@
         </div>
       </div>
     </div>
-    {% endif %}
-
     {% endfor %}
+
 
     <div class="text-center mt-4">
     </div>

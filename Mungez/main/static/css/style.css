@@ -81,7 +81,7 @@ label {
 
 .service-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .service-card:hover .card-img-top {
@@ -93,19 +93,19 @@ label {
 }
 
 .service-card:hover .icon-wrapper {
-  background-color: rgba(var(--bs-primary-rgb), 0.2) !important;
+  background-color: rgba(var(--bs-primary-rgb), 0.2);
 }
 
 .card-2:hover .icon-wrapper {
-  background-color: rgba(var(--bs-warning-rgb), 0.2) !important;
+  background-color: rgba(var(--bs-warning-rgb), 0.2);
 }
 
 .card-3:hover .icon-wrapper {
-  background-color: rgba(var(--bs-success-rgb), 0.2) !important;
+  background-color: rgba(var(--bs-success-rgb), 0.2);
 }
 
 .card-4:hover .icon-wrapper {
-  background-color: rgba(var(--bs-danger-rgb), 0.2) !important;
+  background-color: rgba(var(--bs-danger-rgb), 0.2);
 }
 
 #contact .form-control,
@@ -130,7 +130,7 @@ label {
 
 .hover-effect:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .team-card .card-img-top {
@@ -162,7 +162,7 @@ label {
   display: none;
 }
 
-input[type="radio"]:checked + .role-option {
+input[type="radio"]:checked+.role-option {
   background-color: whitesmoke;
   color: white;
 }
@@ -178,4 +178,17 @@ input[type="radio"]:checked + .role-option {
 .menulist {
   font-size: 2rem;
   font-weight: 900;
+}
+
+.form-floating label {
+  color: #6c757d;
+}
+
+
+.card {
+  border-radius: 10px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
