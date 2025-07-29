@@ -29,7 +29,6 @@ Option to easily repeat a previous service request
 
 UML:
 
-
 ![Alt text](/uml.jpg)
 
 Home > Workers > Details > Booking

@@ -79,7 +79,7 @@ def services_detail_page(request: HttpRequest, worker_id):
 
       if name and rating and comment:
           Comments.objects.create(
-              profile=get_worker,
+              profile=get_profile,
               name=name,
               comment=comment,
               rating=float(rating)
