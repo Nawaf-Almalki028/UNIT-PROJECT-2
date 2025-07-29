@@ -92,24 +92,24 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
-          <p class="mb-0 text-black">&copy; 2023 NawafA. All rights reserved.</p>
+          <p class="mb-0 text-black">&copy; 2030 Nawaf K Tuwaiq. All rights reserved.</p>
         </div>
         <div class="col-md-6">
           <div class="row">
             <div class="col-6">
               <h6 class="text-black">Main Pages</h6>
               <ul class="">
-                <li class="mb-1"><a href="#" class="text-decoration-none text-black">Home</a></li>
-                <li class="mb-1"><a href="#" class="text-decoration-none text-black">About</a></li>
-                <li class="mb-1"><a href="#" class="text-decoration-none text-black">Contact</a></li>
+                <li class="mb-1"><a href="{% url 'main:home_page' %}#" class="text-decoration-none text-black">Home</a></li>
+                <li class="mb-1"><a href="{% url 'main:home_page' %}#services" class="text-decoration-none text-black">Services</a></li>
+                <li class="mb-1"><a href="{% url 'main:home_page' %}#about" class="text-decoration-none text-black">About</a></li>
               </ul>
             </div>
             <div class="col-6">
               <h6 class="text-black">Services</h6>
               <ul class="">
-                <li class="mb-1"><a href="#" class="text-decoration-none text-black">Service One</a></li>
-                <li class="mb-1"><a href="#" class="text-decoration-none text-black">Service Two</a></li>
-                <li class="mb-1"><a href="#" class="text-decoration-none text-black">Service Three</a></li>
+                <li class="mb-1"><a href="{% url 'services:services_main_page' %}" class="text-decoration-none text-black">Plumbing</a></li>
+                <li class="mb-1"><a href="{% url 'services:services_main_page' %}" class="text-decoration-none text-black">Electrical</a></li>
+                <li class="mb-1"><a href="{% url 'services:services_main_page' %}" class="text-decoration-none text-black">Carpenter</a></li>
               </ul>
             </div>
           </div>

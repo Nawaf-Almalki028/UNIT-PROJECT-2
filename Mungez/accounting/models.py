@@ -30,3 +30,23 @@ class Comments(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   rating = models.DecimalField(max_digits=2, decimal_places=1)
   comment = models.CharField(max_length=200)
+
+class Appointment(models.Model):
+  TIME_CHOICES = [
+    ('9am', '9:00AM - 10:00 AM'),
+    ('10am', '10:00AM - 11:00 AM'),
+    ('1pm', '1:00PM - 2:00 PM'),
+    ('3pm', '3:00PM - 4:00 PM'),
+  ]
+  STATUS_CHOICES = [
+    ('pending', 'Pending'),
+    ('accepted', 'Accepted'),
+    ('cancelled', 'Cancelled'),
+  ]
+  
+  profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="appoiment")
+  worker = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="appoiment_worker")
+  date = models.DateField()
+  times = models.CharField(choices=TIME_CHOICES)
+  comment = models.TextField(max_length=300)
+  status = models.CharField(max_length=30, default='pending')

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpRequest,HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from .models import Profile,Degrees,Comments,ServiceAreas
+from .models import Profile,Degrees,Comments,ServiceAreas,Appointment
 
 def signin_page(request: HttpRequest):
   if request.method == "POST":
@@ -77,8 +77,13 @@ def logout_page(request:HttpRequest):
 
 def profile_page(request:HttpRequest):
   if request.user.is_authenticated:
+
+    profile = Profile.objects.get(user=request.user)
+    customer_appointments = Appointment.objects.filter(profile=profile)
+    worker_appointments = Appointment.objects.filter(worker=profile)
+    appointments = Appointment.objects.filter(profile=profile) | Appointment.objects.filter(worker=profile)
+
     if request.method == "POST":
-      profile = Profile.objects.get(user=request.user)
       if "service_button" in request.POST:
         name = request.POST.get("serviceareas")
         if name:
@@ -87,7 +92,20 @@ def profile_page(request:HttpRequest):
               name=name,
           )
       elif "certificate_button" in request.POST:
-        print("yoooooooooooooooooooooooo")
+        name = request.POST.get("certificates")
+        if name:
+          Degrees.objects.create(
+              profile=profile,
+              name=name,
+          )
+      elif "delete-service" in request.POST:
+        service_area_id = request.POST.get("badge_id")
+        service_area = ServiceAreas.objects.get(id=service_area_id,profile=profile)
+        service_area.delete()
+      elif "delete-degree" in request.POST:
+        degree_id = request.POST.get("degree_id")
+        degree_area = Degrees.objects.get(id=degree_id,profile=profile)
+        degree_area.delete()
       else:
         print(request.POST)
         profile.about=request.POST["about"]
@@ -96,7 +114,7 @@ def profile_page(request:HttpRequest):
         profile.save()
         return redirect("accounting:profile_page")
     print(request)
-    return render(request,'main/profile.html',{"profile":"True"})
+    return render(request,'main/profile.html',{"profile":"True","xprofile":profile,"appointments":appointments})
   else:
     return redirect('main:home_page')
 
@@ -144,4 +162,28 @@ def delete_user(request:HttpRequest, user_id):
       return redirect("accounting:admin_page")
   else:
     return redirect('main:home_page')
-  
+
+def accept_appointment(request:HttpRequest, appointment_id):
+    if request.method == "POST":
+        appointment = Appointment.objects.get(id=appointment_id)
+        if request.user.profile:
+            appointment.status = "accepted"
+            appointment.save()
+    return redirect("accounting:profile_page")
+
+
+def cancel_appointment(request:HttpRequest, appointment_id):
+    if request.method == "POST":
+        appointment = Appointment.objects.get(id=appointment_id)
+        if request.user.profile:
+            appointment.status = "cancelled"
+            appointment.save()
+    return redirect("accounting:profile_page")
+
+def update_appointment(request:HttpRequest, appointment_id):
+    if request.method == "POST":
+        appointment = Appointment.objects.get(id=appointment_id)
+        if request.user.profile == appointment.worker:
+            appointment.status = "cancelled"
+            appointment.save()
+    return redirect("accounting:profile_page")

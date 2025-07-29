@@ -15,4 +15,7 @@ urlpatterns = [
     path('<int:user_id>/deactivate/', views.deactivate_user, name="deactivate_user"),
     path('<int:user_id>/delete/', views.delete_user, name="delete_user"),
     path('terms-of-service/', views.terms_of_service, name="terms_of_service"),
+    path('appointment/<int:appointment_id>/accept/', views.accept_appointment, name='accept_appointment'),
+    path('appointment/<int:appointment_id>/cancel/', views.cancel_appointment, name='cancel_appointment'),
+
 ]

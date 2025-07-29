@@ -5,64 +5,110 @@
 
 {% for account in accounts %}
 <div class="container">
-    <div class="user-card rounded-4 shadow-sm bg-white m-4 p-4">
-        <div class="d-flex justify-content-between align-items-start">
-
-            <div class="profile-section d-flex align-items-center gap-4">
-                <img class="rounded-circle shadow-sm" src="{{account.profile.profile_img.url}}"
-                    style="width: 80px; height: 80px;" alt="Profile">
-                <div>
-                    <h5 class="mb-1">{{account.username}}</h5>
-                    <p class="text-muted small mb-1">Member since: {{account.date_joined|date:"Y F"}}</p>
-                    <span class="badge bg-success">{{account.profile.activated|yesno:"Activated,DeActivated"}}</span>
-                    <span class="badge bg-primary ms-1">Worker</span>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-gear-fill"></i> SETTINGS </button>
-                <ul class="dropdown-menu dropdown-menu-end" style="font-size: 12px;" aria-labelledby="profileDropdown">
-                    <li><a class="dropdown-item" href="{% url 'accounting:activate_user' account.id %}"><i
-                                class="bi bi-person me-2"></i>Activate {{account.username}}</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'accounting:deactivate_user' account.id %}"><i
-                                class="bi bi-person me-2"></i>DeActivate {{account.username}}</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'accounting:delete_user' account.id %}"><i
-                                class="bi bi-person me-2"></i>Delete {{account.username}}</a></li>
-                </ul>
-            </div>
+  <div class="card border-0 rounded-4 shadow-sm mb-4 overflow-hidden">
+    <div class="card-header bg-light py-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 d-flex align-items-center gap-2">
+          <i class="bi bi-person-badge"></i> User Profile
+        </h5>
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-gear"></i> Settings
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{% url 'accounting:activate_user' account.id %}">
+              <i class="bi bi-check-circle text-success me-2"></i>Activate
+            </a></li>
+            <li><a class="dropdown-item" href="{% url 'accounting:deactivate_user' account.id %}">
+              <i class="bi bi-slash-circle text-warning me-2"></i>Deactivate
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="{% url 'accounting:delete_user' account.id %}">
+              <i class="bi bi-trash me-2"></i>Delete
+            </a></li>
+          </ul>
         </div>
-
-        <hr class="my-3">
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="mb-2">
-                    <span class="text-muted small">Username:</span>
-                    <span class="d-block">{{account.username}}</span>
-                </div>
-                <div class="mb-2">
-                    <span class="text-muted small">Email:</span>
-                    <span class="d-block">{{account.email}}</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-2">
-                    <span class="text-muted small">Account Type:</span>
-                    <span class="d-block">{{account.profile.is_worker|yesno:"Worker,Customer"}}</span>
-                </div>
-                <div class="mb-2">
-                    <span class="text-muted small">Last Login:</span>
-                    <span class="d-block">{{account.last_login}}</span>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
+    
+    <div class="card-body p-4">
+      <div class="row">
+        <div class="col-md-4 text-center border-end-md">
+          <img src="{{account.profile.profile_img.url}}" 
+               class="rounded-circle shadow mb-3" 
+               width="120" height="120"
+               style="object-fit: cover;">
+          
+          <h5>{{account.username}}</h5>
+          <p class="text-muted small mb-2">{{account.get_full_name}}</p>
+          
+          <div class="d-flex justify-content-center gap-2 mb-3">
+            <span class="badge {% if account.profile.activated %}bg-success{% else %}bg-secondary{% endif %}">
+              {{account.profile.activated|yesno:"Active,Deactivate"}}
+            </span>
+            <span class="badge bg-primary">
+              {{account.profile.is_worker|yesno:"Worker,Customer"}}
+            </span>
+          </div>
+          
+          <p class="text-muted small">
+            <i class="bi bi-calendar me-1"></i>
+            Joined {{account.date_joined|date:"F Y"}}
+          </p>
+        </div>
+        
+        <div class="col-md-8 ps-md-4">
+
+          <div class="mb-4">
+            <h6 class="d-flex align-items-center gap-2 mb-3">
+              <i class="bi bi-geo-alt"></i> Service Areas
+            </h6>
+            <div class="d-flex flex-wrap gap-2">
+              {% for serv in account.profile.service_area.all %}
+              <span class="badge bg-light text-dark border">{{serv.name}}</span>
+              {% empty %}
+              <span class="text-muted small">No service areas assigned</span>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <h6 class="d-flex align-items-center gap-2 mb-3">
+              <i class="bi bi-award"></i> Certificates
+            </h6>
+            <div class="d-flex flex-wrap gap-2">
+              {% for degg in account.profile.degrees.all %}
+              <span class="badge bg-light text-dark border">{{degg.name}}</span>
+              {% empty %}
+              <span class="text-muted small">No certificates</span>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <p class="text-muted small mb-1">Email</p>
+                <p class="mb-0">{{account.email}}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <p class="text-muted small mb-1">Last Login</p>
+                <p class="mb-0">
+                  {% if account.last_login %}
+                    {{account.last_login}}
+                  {% else %}
+                    Never
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
