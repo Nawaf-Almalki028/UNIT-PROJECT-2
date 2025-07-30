@@ -179,11 +179,3 @@ def cancel_appointment(request:HttpRequest, appointment_id):
             appointment.status = "cancelled"
             appointment.save()
     return redirect("accounting:profile_page")
-
-def update_appointment(request:HttpRequest, appointment_id):
-    if request.method == "POST":
-        appointment = Appointment.objects.get(id=appointment_id)
-        if request.user.profile == appointment.worker:
-            appointment.status = "cancelled"
-            appointment.save()
-    return redirect("accounting:profile_page")

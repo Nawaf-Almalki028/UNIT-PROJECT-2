@@ -14,7 +14,6 @@
     integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <title>{% block title %} {% endblock %}</title>
-  {% load django_browser_reload %}
 </head>
 
 <body>
@@ -85,8 +84,6 @@
     {% block content %}
     {% endblock %}
   </div>
-
-  {% django_browser_reload_script %}
   <hr>
   <footer class="footer py-4 mt-5">
     <div class="container">
