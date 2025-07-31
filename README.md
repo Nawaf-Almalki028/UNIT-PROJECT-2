@@ -28,6 +28,7 @@ Option to easily repeat a previous service request
 [==================================================================]
 
 UML:
+<img width="1608" height="1681" alt="image" src="https://github.com/user-attachments/assets/2a1db5d1-74c7-476f-8962-e239dc75b1da" />
 
 ![Alt text](/uml.jpg)
 
